@@ -1,2 +1,2 @@
 # stepik_selenium_course
-All homework from the course
+Some homework from module 2
