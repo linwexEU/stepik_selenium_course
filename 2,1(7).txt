@@ -1,0 +1,33 @@
+from selenium import webdriver 
+from selenium.webdriver.common.by import By 
+import math 
+import time 
+
+def calc(x):
+    return str(math.log(abs(12 * math.sin(x))))
+
+try:
+    link = "http://suninjuly.github.io/get_attribute.html"
+    browser = webdriver.Chrome()
+    browser.get(link)
+
+    treasure = browser.find_element(By.ID, "treasure")
+    valuex = int(treasure.get_attribute("valuex"))
+    answear = calc(valuex)
+
+    int_ans = browser.find_element(By.ID, "answer")
+    int_ans.send_keys(str(answear))
+
+    robot_check = browser.find_element(By.ID, "robotCheckbox")
+    robot_check.click()
+
+    robot_rule = browser.find_element(By.ID, "robotsRule")
+    robot_rule.click()
+
+    button = browser.find_element(By.CSS_SELECTOR, ".btn.btn-default")
+    button.click()
+    time.sleep(10)
+except Exception as ex:
+    print(ex) 
+finally:
+    browser.quit()
